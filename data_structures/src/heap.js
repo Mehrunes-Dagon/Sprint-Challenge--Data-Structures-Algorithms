@@ -1,6 +1,28 @@
 const heapsort = (arr) => {
-  /* Your code here */
-  
+  const newHeap = new Heap();
+  arr.forEach(num => newHeap.insert(num));
+
+  const result = [];
+  while (newHeap.getSize()) {
+    result.unshift(newHeap.delete());
+  }
+
+  console.log(result);
+  return result;
+
+  // ^^^THIS IS THE WRONG WAY, I HATE IT
+
+  // const thing = newHeap.getMax();
+
+  // newHeap.storage.forEach((num, i) => {
+  //   const middle = newHeap.storage[Math.floor(newHeap.storage.length / 2)];
+
+  //   if (num < middle) newHeap.bubbleUp(i);
+  //   else if (num > middle) newHeap.siftDown(i);
+  // });
+
+  // console.log(newHeap);
+  // return newHeap.storage;
 };
 
 class Heap {
@@ -38,7 +60,7 @@ class Heap {
   }
 
   bubbleUp(index) {
-    const parent = Math.floor(index/2);
+    const parent = Math.floor(index / 2);
     if (parent > 0 && this.storage[parent] < this.storage[index]) {
       [this.storage[parent], this.storage[index]] = [this.storage[index], this.storage[parent]];
       this.bubbleUp(parent);
